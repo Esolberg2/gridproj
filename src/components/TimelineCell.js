@@ -1,10 +1,7 @@
-import Grid from '@mui/material/Grid';
-
 const TimelineCell = ({ colIndex, cellWidth, children }) => {
   return (
     <>
-        <Grid
-            item 
+        <div
             key={colIndex}>
             <div style={{
                 border: '1px solid rgba(0, 0, 0, 0.05)',
@@ -19,7 +16,7 @@ const TimelineCell = ({ colIndex, cellWidth, children }) => {
             }}>
                 {children}
             </div>
-        </Grid>
+        </div>
     </>
   );
 };

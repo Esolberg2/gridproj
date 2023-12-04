@@ -1,4 +1,3 @@
-import Grid from '@mui/material/Grid';
 import TimelineCell from './TimelineCell';
 
 const GridRow = ({ rowIndex, columns, cellWidth, cellContent }) => {
@@ -8,23 +7,15 @@ const GridRow = ({ rowIndex, columns, cellWidth, cellContent }) => {
     }
 
     return (
-        <Grid 
-            container 
-            item 
-            key={rowIndex} 
-            spacing={0}
-            wrap="nowrap"
-            >
+        <div style={{display: 'flex'}} key={rowIndex}>
             {[...Array(columns)].map((_, colIndex) => (
-                <Grid
-                    item 
-                    key={colIndex}>
+                <div key={colIndex}>
                     <TimelineCell key={colIndex} rowIndex={rowIndex} colIndex={colIndex} cellWidth={cellWidth}>
                         {renderCellContent(colIndex)}
                     </TimelineCell>
-                </Grid>
+                </div>
             ))}
-        </Grid>
+        </div>
     );
 };
 

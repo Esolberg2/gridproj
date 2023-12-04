@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <GridMatrix rows={2} columns={columnHeaders.length} cellWidth={sliderValue} headerLabels={columnHeaders} />
+      <GridMatrix rows={10} columns={columnHeaders.length} cellWidth={sliderValue} columnLabels={columnHeaders} />
       <Slider
         aria-label="Small steps"
         value={sliderValue}
