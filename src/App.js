@@ -2,12 +2,13 @@ import './App.css';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react'
 import moment from 'moment';
-import GridMatrix from './components/GridMatrix';
+import Timeline from './components/Timeline';
 
 
 function App() {
   const [sliderValue, setSliderValue] = useState(100);
   const columnHeaders = calculateColumns("01:00", "11:53");
+  const rowLabels = Array.from(Array(columnHeaders.length + 1).keys())
 
   const handleChange = (event, newValue) => {
     setSliderValue(newValue);
@@ -36,8 +37,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <GridMatrix rows={10} columns={columnHeaders.length} cellWidth={sliderValue} columnLabels={columnHeaders} />
+    <div className="App" style={{display: 'flex', flexDirection: 'column'}}>
+      <Timeline rows={10} columns={columnHeaders.length} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/>
       <Slider
         aria-label="Small steps"
         value={sliderValue}

@@ -1,23 +1,15 @@
-const TimelineCell = ({ colIndex, cellWidth, children }) => {
+import Cell from './Cell';
+
+
+const TimelineCell = (props) => {
+
+  const { startTime, endTime, colIndex, cellWidth, children } = props;
+  // const cellData = rowData ? rowData.filter(event => event.startTime.isBetween(startTime, endTime, undefined, '[)')) : []
+
   return (
-    <>
-        <div
-            key={colIndex}>
-            <div style={{
-                border: '1px solid rgba(0, 0, 0, 0.05)',
-                display: 'flex',
-                flexDirection: 'column',
-                flex: '1',
-                width: cellWidth,
-                whiteSpace: "nowrap",
-                minWidth: '30px',
-                minHeight: '30px',
-                padding: '10px'
-            }}>
-                {children}
-            </div>
-        </div>
-    </>
+    <Cell colIndex={colIndex} cellWidth={cellWidth} >
+      {children}
+    </Cell>
   );
 };
 
