@@ -18,12 +18,12 @@ body, html {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.TimelineContainer::-webkit-scrollbar {
+.HorizontalScrollGridContainer::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.TimelineContainer {
+.HorizontalScrollGridContainer {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 } 

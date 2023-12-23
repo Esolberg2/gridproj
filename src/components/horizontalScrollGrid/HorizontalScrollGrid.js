@@ -1,6 +1,6 @@
 import React from 'react';
-import GridRow from './GridRow';
-import Cell from './Cell';
+import GridRow from '../gridRow/GridRow';
+import Cell from '../cell/Cell';
 
 const HorizontalScrollGrid = ({ rows, columns, cellWidth, columnLabels, rowLabels, renderContentCell, renderColHeaderCell }) => {
     
@@ -43,7 +43,7 @@ const HorizontalScrollGrid = ({ rows, columns, cellWidth, columnLabels, rowLabel
     }
 
     return (
-        <div className="TimelineContainer" style={{ overflowX: 'auto' }}>
+        <div className="HorizontalScrollGridContainer" style={{ overflowX: 'auto' }}>
             <div style={{ display: 'flex'}}>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     {renderColHeaders()}

@@ -2,7 +2,7 @@ import './App.css';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react'
 import moment from 'moment';
-import Timeline from './components/Timeline';
+import Timeline from './components/horizontalScrollGrid/Timeline';
 
 
 function App() {

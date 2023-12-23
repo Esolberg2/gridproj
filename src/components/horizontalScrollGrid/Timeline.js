@@ -1,6 +1,6 @@
 import React from 'react';
-import Cell from './Cell';
-import TimelineCell from './TimelineCell';
+import Cell from '../cell/Cell';
+import TimelineCell from '../cell/TimelineCell';
 import HorizontalScrollGrid from './HorizontalScrollGrid';
 import moment from 'moment';
 

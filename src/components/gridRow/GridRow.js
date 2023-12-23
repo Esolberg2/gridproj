@@ -1,4 +1,4 @@
-import Cell from './Cell';
+import Cell from '../cell/Cell';
 
 const GridRow = ({ rowIndex, columns, values, rowLabel, renderLabelCell, renderContentCell }) => {
     
