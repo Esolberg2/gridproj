@@ -1,4 +1,4 @@
-const Cell = ({ index, cellWidth, children }) => {
+const Cell = ({ style, index, cellWidth, children }) => {
 
     return (
       <>
@@ -13,7 +13,8 @@ const Cell = ({ index, cellWidth, children }) => {
                   whiteSpace: "nowrap",
                   minWidth: '30px',
                   minHeight: '30px',
-                  padding: '10px'
+                  padding: '10px',
+                  ...style // allows inline style to override default style properties
               }}>
                   {children}
               </div>

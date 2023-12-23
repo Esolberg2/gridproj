@@ -2,7 +2,7 @@ import './App.css';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react'
 import moment from 'moment';
-import Timeline from './components/Timeline';
+import TimelineComposed from './components/TimelineComposed';
 
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
   const columnHeaders = calculateColumns("01:00", "11:53");
   const rowLabels = Array.from(Array(columnHeaders.length + 1).keys())
 
+  console.log(columnHeaders.length)
   const handleChange = (event, newValue) => {
     setSliderValue(newValue);
   };
@@ -32,13 +33,14 @@ function App() {
       timeHeaders.push(start.format('HH:mm'))
       start.add(30, 'minutes')
     }
-
     return timeHeaders;
   }
 
   return (
-    <div className="App" style={{display: 'flex', flexDirection: 'column'}}>
-      <Timeline rows={10} columns={columnHeaders.length} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/>
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', width: '1000px', overscrollBehavior: 'contain' }}>
+      {/* <Timeline rows={2} columns={14} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/> */}
+
+      <TimelineComposed rows={2} columns={14} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/>
       <Slider
         aria-label="Small steps"
         value={sliderValue}
@@ -47,7 +49,7 @@ function App() {
         min={100}
         max={500}
         valueLabelDisplay="auto"
-      />
+        />
     </div>
   );
 }

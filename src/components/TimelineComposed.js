@@ -2,10 +2,14 @@ import React from 'react';
 import GridRow from './GridRow';
 import Cell from './Cell';
 import TimelineCell from './TimelineCell';
+import HorizontalScrollGrid from './HorizontalScrollGrid';
 import moment from 'moment';
 
 
-const Timeline = ({ rows, columns, cellWidth, columnLabels, rowLabels }) => {
+const TimelineComposed = ({ rows, cellWidth}) => {
+
+    const columnLabels = calculateColumns("01:00", "11:53");
+    const rowLabels = Array.from(Array(columnLabels.length + 1).keys())
 
     function calculateColumns(startTime, endTime) {
         const [startHour, startMinute] = startTime.split(':');
@@ -36,21 +40,7 @@ const Timeline = ({ rows, columns, cellWidth, columnLabels, rowLabels }) => {
         )
     }
 
-    const renderHeader = function() {
-        return (
-            <GridRow
-                key={-1}
-                rowLabel={""}
-                rowIndex={-1}
-                columns={columns}
-                cellWidth={cellWidth}
-                values={columnLabels}
-                renderContentCell={renderColHeaderCell}
-                />
-        )
-    }
-
-    const renderBodyCell = function(colIndex, cellData) {
+    const renderContentCell = function(colIndex, cellData) {
         return (
             <TimelineCell key={colIndex} colIndex={colIndex} cellWidth={cellWidth}>
                 {cellData ? cellData : '_'}
@@ -58,31 +48,17 @@ const Timeline = ({ rows, columns, cellWidth, columnLabels, rowLabels }) => {
         )
     }
 
-    const renderBodyRows = function() {
-        return (
-            <div>
-                {[...Array(rows)].map((_, rowIndex) => (
-                    <GridRow
-                        key={rowIndex}
-                        rowIndex={rowIndex}
-                        columns={columns} 
-                        cellWidth={cellWidth} 
-                        rowLabel={rowLabels ? rowLabels[rowIndex] : null}
-                        renderContentCell={renderBodyCell}
-                    />
-                ))}
-            </div>
-        )
-    }
-
     return (
-        <div style={{ display: 'flex'}}>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                {renderHeader()}
-                {renderBodyRows()}
-            </div>
-        </div>
+        <HorizontalScrollGrid
+            rows={rows}
+            columns={columnLabels.length}
+            cellWidth={cellWidth}
+            columnLabels={columnLabels}
+            rowLabels={rowLabels}
+            renderContentCell={renderContentCell}
+            renderColHeaderCell={renderColHeaderCell}
+            />
     );
 };
 
-export default Timeline;
+export default TimelineComposed;
