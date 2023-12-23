@@ -1,5 +1,4 @@
 import React from 'react';
-import GridRow from './GridRow';
 import Cell from './Cell';
 import TimelineCell from './TimelineCell';
 import HorizontalScrollGrid from './HorizontalScrollGrid';
@@ -8,6 +7,10 @@ import moment from 'moment';
 
 const TimelineComposed = ({ rows, cellWidth}) => {
 
+    // set defaults
+    cellWidth = cellWidth ? cellWidth : 100;
+    
+    // Timeline specific logic to compose with HorizontalScrollGrid
     const columnLabels = calculateColumns("01:00", "11:53");
     const rowLabels = Array.from(Array(columnLabels.length + 1).keys())
 

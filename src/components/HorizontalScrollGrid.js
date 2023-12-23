@@ -4,10 +4,11 @@ import Cell from './Cell';
 
 const HorizontalScrollGrid = ({ rows, columns, cellWidth, columnLabels, rowLabels, renderContentCell, renderColHeaderCell }) => {
     
-    if (renderColHeaderCell == null) {
-        renderColHeaderCell = (colIndex, headerLabel) => <Cell key={colIndex} index={colIndex} cellWidth={cellWidth}>{headerLabel}</Cell>
-    }
+    // set defaults
+    cellWidth = cellWidth ? cellWidth : 100;
+    renderColHeaderCell = renderColHeaderCell != null ? renderColHeaderCell : (colIndex, headerLabel) => <Cell key={colIndex} index={colIndex} cellWidth={cellWidth}>{headerLabel}</Cell>
 
+    // render helpers
     const renderColHeaders = function() {
         if (columnLabels != null) {
             return (
