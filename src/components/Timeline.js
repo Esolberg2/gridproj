@@ -5,7 +5,7 @@ import HorizontalScrollGrid from './HorizontalScrollGrid';
 import moment from 'moment';
 
 
-const TimelineComposed = ({ rows, cellWidth}) => {
+const Timeline = ({ rows, cellWidth}) => {
 
     // set defaults
     cellWidth = cellWidth ? cellWidth : 100;
@@ -64,4 +64,4 @@ const TimelineComposed = ({ rows, cellWidth}) => {
     );
 };
 
-export default TimelineComposed;
+export default Timeline;

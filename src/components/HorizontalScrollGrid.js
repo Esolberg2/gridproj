@@ -43,10 +43,12 @@ const HorizontalScrollGrid = ({ rows, columns, cellWidth, columnLabels, rowLabel
     }
 
     return (
-        <div style={{ display: 'flex'}}>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                {renderColHeaders()}
-                {renderBodyRows()}
+        <div className="TimelineContainer" style={{ overflowX: 'auto' }}>
+            <div style={{ display: 'flex'}}>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    {renderColHeaders()}
+                    {renderBodyRows()}
+                </div>
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import './App.css';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react'
 import moment from 'moment';
-import TimelineComposed from './components/TimelineComposed';
+import Timeline from './components/Timeline';
 
 
 function App() {
@@ -36,35 +36,18 @@ function App() {
     return timeHeaders;
   }
 
-  // return (
-  //   <div className="App" style={{ display: 'flex', flexDirection: 'column', width: '1000px', overscrollBehavior: 'contain' }}>
-  //     <TimelineComposed rows={2} columns={14} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/>
-  //     <Slider
-  //       aria-label="Small steps"
-  //       value={sliderValue}
-  //       onChange={handleChange}
-  //       step={1}
-  //       min={100}
-  //       max={500}
-  //       valueLabelDisplay="auto"
-  //       />
-  //   </div>
-  // );
-
   return (
     <div className="App" style={{ display: 'flex', flexDirection: 'column'}}>
       <div style={{height: "100px"}}>
         HEADER
       </div>
-      <div className="TimelineContainer" style={{ overflowX: 'auto' }}>
-        <TimelineComposed
-          rows={2}
-          columns={14}
-          cellWidth={sliderValue}
-          columnLabels={columnHeaders}
-          rowLabels={rowLabels}
-          />
-      </div>
+      <Timeline
+        rows={2}
+        columns={14}
+        cellWidth={sliderValue}
+        columnLabels={columnHeaders}
+        rowLabels={rowLabels}
+        />
       <Slider
         aria-label="Small steps"
         value={sliderValue}
@@ -74,27 +57,9 @@ function App() {
         max={500}
         valueLabelDisplay="auto"
         style={{width: '500px'}}
-      />
+        />
     </div>
   );
-  
-  // return (
-  //   <div className="App" style={{ display: 'flex', flexDirection: 'column', width: '1000px', overflowX: 'hidden' }}>
-  //     <div style={{ overflowX: 'auto', width: '100%', marginRight: '-17px' }}>
-  //       <TimelineComposed rows={2} columns={14} cellWidth={sliderValue} columnLabels={columnHeaders} rowLabels={rowLabels}/>
-  //     </div>
-  //     <Slider
-  //       aria-label="Small steps"
-  //       value={sliderValue}
-  //       onChange={handleChange}
-  //       step={1}
-  //       min={100}
-  //       max={500}
-  //       valueLabelDisplay="auto"
-  //     />
-  //   </div>
-  // );
-  
 }
 
 export default App;
