@@ -6,7 +6,23 @@ import { useState } from 'react'
 
 const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels, renderLabelCell, renderContentCell, renderColHeaderCell, showRowLabels }) => {
 
-    const [gridStateData, setGridStateData] = useState(gridData);
+    const getDefaultRowData = function() {
+        const gridData = {};
+        Array.from(Array(rows).keys()).forEach((_, index) => {
+            gridData[index] = {label: index, contents: getDefaultCellData()}
+        });
+        return gridData;
+    }
+
+    const getDefaultCellData = function() {
+        const rowData = {}
+        Array.from(Array(columns).keys()).forEach((_, colIndex) => {
+            rowData[colIndex] = {}
+        })
+        return rowData
+    }
+
+    const [gridStateData, setGridStateData] = useState(gridData || getDefaultRowData() );
 
     const updateRow = function () {
         setGridStateData(current => {
@@ -19,6 +35,10 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
             }
         })
     }
+
+    // set defaults
+    cellWidth = cellWidth ? cellWidth : 100;
+    renderColHeaderCell = renderColHeaderCell != null ? renderColHeaderCell : (colIndex, columnLabels) => <Cell key={colIndex} index={colIndex} cellWidth={cellWidth}>{columnLabels}</Cell>
 
     // render helpers
     const renderColHeaders = function() {

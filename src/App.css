@@ -17,6 +17,18 @@ body, html {
   }
 }
 
+.Cell {
+  z-index: 0;
+}
+
+.CaseTile {
+  z-index: 10;
+}
+
+.RowLabel {
+  z-index: 20;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .HorizontalScrollGridContainer::-webkit-scrollbar {
   display: none;

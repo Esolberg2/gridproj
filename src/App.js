@@ -7,33 +7,58 @@ import Timeline from './components/horizontalScrollGrid/Timeline';
 
 function App() {
   const [sliderValue, setSliderValue] = useState(100);
-  const columnHeaders = calculateColumns("01:00", "11:53");
-  const rowLabels = Array.from(Array(columnHeaders.length + 1).keys())
 
-  console.log(columnHeaders.length)
   const handleChange = (event, newValue) => {
     setSliderValue(newValue);
   };
 
-  function calculateColumns(startTime, endTime) {
-    const [startHour, startMinute] = startTime.split(':');
-    const [endHour,   endMinute]   = endTime.split(':');
-    let timeHeaders = [];
-
-    let start = moment();
-    start.set({hour:startHour,minute:startMinute,second:0,millisecond:0});
-    
-    let end = moment();
-    end.set({hour:endHour,minute:endMinute,second:0,millisecond:0});
-
-    // set start to nearest half hour prior.
-    moment(start).subtract(start.minute() % 30, "minutes").format("DD.MM.YYYY, h:mm:ss a");
-
-    while (start.isBefore(end)) {
-      timeHeaders.push(start.format('HH:mm'))
-      start.add(30, 'minutes')
-    }
-    return timeHeaders;
+  const dummyData = {
+    OR1: {
+      label: "OR 1",
+      events: []
+    },
+    OR2: {
+      label: "OR 2",
+      events: [
+        {
+          name: "Kate Lyndon",
+          specialty: "Spinal",
+          startTime: "09:00",
+          endTime: "11:00",
+          id: 1,
+        }
+      ]
+    },
+    OR3: {
+      label: "OR 3",
+      events: []
+    },
+    OR4: {
+      label: "OR 4",
+      events: [
+        {
+          name: "Brian Kowalski",
+          specialty: "Otolaryngology",
+          startTime: "01:00",
+          endTime: "02:40",
+          id: 2
+        },
+        {
+          name: "Conrad Jennings",
+          specialty: "Cardiology",
+          startTime: "04:00",
+          endTime: "05:30",
+          id: 3,
+        },
+        {
+          name: "Gale Gillroy",
+          specialty: "Spinal",
+          startTime: "06:00",
+          endTime: "08:00",
+          id: 4,
+        }
+      ]
+    },
   }
 
   return (
@@ -42,11 +67,15 @@ function App() {
         HEADER
       </div>
       <Timeline
-        rows={2}
+        rows={10}
         columns={14}
         cellWidth={sliderValue}
-        columnLabels={columnHeaders}
-        rowLabels={rowLabels}
+        // columnLabels={columnHeaders}
+        // rowLabels={rowLabels}
+        timelineData={dummyData}
+        startTime={"01:00"}
+        endTime={"11:53"}
+        minuteInterval={30}
         />
       <Slider
         aria-label="Small steps"
