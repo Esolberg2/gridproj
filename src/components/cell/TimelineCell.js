@@ -97,7 +97,11 @@ const TimelineCell = ({ colIndex, data, pixelsPerMinute, style }) => {
           const startTime = moment.utc(caseObj.startTime, "HH:mm", true);
           const endTime = moment.utc(caseObj.endTime, "HH:mm", true);
           const duration = endTime.diff(startTime, 'minutes');
-          const width = duration * pixelsPerMinute
+          const width = (duration * pixelsPerMinute)
+          console.log(pixelsPerMinute)
+          console.log(duration)
+          console.log(duration * pixelsPerMinute)
+          console.log("")
           return <CaseTile style={{width: width}} key={caseObj.id} name={caseObj.name} specialty={caseObj.specialty} />
         })
       }

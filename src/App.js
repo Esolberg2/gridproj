@@ -54,7 +54,7 @@ function App() {
           name: "Gale Gillroy",
           specialty: "Spinal",
           startTime: "06:00",
-          endTime: "08:00",
+          endTime: "08:30",
           id: 4,
         }
       ]
@@ -70,23 +70,24 @@ function App() {
         rows={10}
         columns={14}
         cellWidth={sliderValue}
-        // columnLabels={columnHeaders}
-        // rowLabels={rowLabels}
         timelineData={dummyData}
         startTime={"01:00"}
         endTime={"11:53"}
         minuteInterval={30}
         />
-      <Slider
-        aria-label="Small steps"
-        value={sliderValue}
-        onChange={handleChange}
-        step={1}
-        min={100}
-        max={500}
-        valueLabelDisplay="auto"
-        style={{width: '500px'}}
-        />
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        {"Zoom"}
+        <Slider
+          aria-label="Small steps"
+          value={sliderValue}
+          onChange={handleChange}
+          step={1}
+          min={55}
+          max={500}
+          valueLabelDisplay="auto"
+          style={{width: '500px'}}
+          />
+      </div>
     </div>
   );
 }

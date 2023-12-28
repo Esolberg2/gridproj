@@ -1,24 +1,23 @@
 import React from 'react';
 import GridRow from '../gridRow/GridRow';
-import Cell from '../cell/Cell';
-import { useState } from 'react'
-
 
 const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels, renderLabelCell, renderContentCell, renderColHeaderCell, showRowLabels }) => {
 
-    const [gridStateData, setGridStateData] = useState(gridData);
+    // const [gridStateData, setGridStateData] = useState(gridData);
 
-    const updateRow = function () {
-        setGridStateData(current => {
-            return {
-                ...current,
-                1: {
-                    ...current[1],
-                    label: "foo"
-                }
-            }
-        })
-    }
+    // const updateRow = function () {
+    //     setGridStateData(current => {
+    //         return {
+    //             ...current,
+    //             1: {
+    //                 ...current[1],
+    //                 label: "foo"
+    //             }
+    //         }
+    //     })
+    // }
+
+    console.log("HorizontalScrollGrid rendered")
 
     // render helpers
     const renderColHeaders = function() {
@@ -41,7 +40,7 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
     const renderBodyRows = function() {
         return (
             <div>
-                {Object.keys(gridStateData).map((rowKey, rowIndex) => (
+                {Object.keys(gridData).map((rowKey, rowIndex) => (
                     <GridRow
                         key={rowKey}
                         rowIndex={rowIndex}
@@ -49,8 +48,8 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
                         cellWidth={cellWidth}
                         showLabel={showRowLabels}
                         renderContentCell={renderContentCell}
-                        rowLabel={gridStateData[rowKey].label}
-                        rowData={gridStateData[rowKey]}
+                        rowLabel={gridData[rowKey].label}
+                        rowData={gridData[rowKey]}
                         renderLabelCell={renderLabelCell}
                         />
                 ))}
@@ -66,7 +65,7 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
                     {renderBodyRows()}
                 </div>
             </div>
-            <button onClick={updateRow}>test</button>
+            {/* <button onClick={updateRow}>test</button> */}
         </div>
     );
 };

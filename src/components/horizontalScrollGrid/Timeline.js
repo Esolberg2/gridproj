@@ -3,8 +3,12 @@ import Cell from '../cell/Cell';
 import TimelineCell from '../cell/TimelineCell';
 import HorizontalScrollGrid from './HorizontalScrollGrid';
 import moment from 'moment';
+import { useState } from 'react'
+
 
 const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInterval}) => {
+    
+    const [gridStateData, setGridStateData] = useState(timelineData);
 
     // set defaults
     cellWidth = cellWidth ? cellWidth : 100;
@@ -32,6 +36,8 @@ const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInt
         }
         return timeHeaders;
       }
+
+      
 
     const renderColHeaderCell = function(rowIndex, colIndex, headerLabels) {
         return (
@@ -72,13 +78,31 @@ const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInt
                 data={selectEventsForCell(rowData, columnStartTimes[colIndex], moment(columnStartTimes[colIndex]).add(minuteInterval, "minutes"))}
                 startTime={columnStartTimes[colIndex]}
                 endTime={moment(columnStartTimes[colIndex]).add(minuteInterval, "minutes")}
-                pixelsPerMinute={cellWidth/minuteInterval}
+                pixelsPerMinute={((cellWidth+2)/minuteInterval)}
                 style={{ width: cellWidth }}
                 />
         )
     }
 
+    const updateRow = function () {
+        setGridStateData(current => {
+            return {
+                ...current,
+                OR2: {
+                    ...current["OR2"],
+                    // label: "foo"
+                    // ...current["OR2"].events,
+                    ...current["OR2"].events[0],
+                    ...current["OR2"].events[0].name = "foo",
+                    ...current["OR2"].events[0].startTime = "02:30",
+                    ...current["OR2"].events[0].endTime = "04:30"
+                }
+            }
+        })
+    }
+
     return (
+        <>
         <HorizontalScrollGrid
             rows={rows}
             columns={columnStartTimes.length}
@@ -86,9 +110,13 @@ const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInt
             showRowLabels={true}
             renderContentCell={renderContentCell}
             renderColHeaderCell={renderColHeaderCell}
-            gridData={timelineData}
+            gridData={gridStateData}
             renderLabelCell={renderLabelCell}
             />
+        <button style={{width: 50}} onClick={()=>{updateRow()}}>
+            test
+        </button>
+        </>
     );
 };
 
