@@ -1,8 +1,17 @@
-const CaseTile = ({ style, index, name, specialty}) => {
+const CaseTile = ({ style, index, caseData}) => {
+
+    const handleOnDrag = function (e) {
+        // console.log("adding case data", caseData)
+        e.dataTransfer.setData("originalData", JSON.stringify(caseData))
+        // console.log(e.dataTransfer.getData("originalData"))
+    }
+
+    // console.log(Object.keys(e.dataTransfer.getData("originalData")))
 
     return (
       <>
         <div 
+            onDragStart={handleOnDrag}
             className="CaseTile"
             onClick={()=>console.log("click")}
             draggable={true}
@@ -11,8 +20,8 @@ const CaseTile = ({ style, index, name, specialty}) => {
             pointerEvents: 'auto',
             ...style // allows inline style to override default style properties
         }}>
-                <div>{name}</div>
-                <div>{specialty}</div>
+                <div>{caseData.name}</div>
+                <div>{caseData.specialty}</div>
             </div>
       </>
     );

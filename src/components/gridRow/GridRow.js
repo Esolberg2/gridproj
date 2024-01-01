@@ -7,8 +7,17 @@ const GridRow = ({ rowIndex, columns, rowData, renderLabelCell, renderContentCel
         }
     }
 
+    const dragOver = function (e) {
+        e.preventDefault()
+    }
+
+    const handleDrop = function (e) {
+        console.log(rowData)
+        console.log(e.dataTransfer.getData("originalData"))
+    }
+
     return (
-        <div style={{display: 'flex', flexDirection: 'row'}} key={rowIndex}>
+        <div style={{display: 'flex', flexDirection: 'row'}} key={rowIndex} onDrop={handleDrop} onDragOver={dragOver}>
             {renderLabel()}
             {[...Array(columns)].map((_, colIndex) => (
                 <div key={colIndex}>

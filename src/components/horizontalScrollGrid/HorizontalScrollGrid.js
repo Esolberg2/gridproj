@@ -1,7 +1,7 @@
 import React from 'react';
 import GridRow from '../gridRow/GridRow';
 
-const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels, renderLabelCell, renderContentCell, renderColHeaderCell, showRowLabels }) => {
+const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels, renderLabelCell, renderContentCell, renderColHeaderCell, showRowLabels, controllerRef }) => {
 
     // const [gridStateData, setGridStateData] = useState(gridData);
 
@@ -17,7 +17,7 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
     //     })
     // }
 
-    console.log("HorizontalScrollGrid rendered")
+    // console.log("HorizontalScrollGrid rendered")
 
     // render helpers
     const renderColHeaders = function() {
@@ -51,6 +51,7 @@ const HorizontalScrollGrid = ({ rows, columns, gridData, cellWidth, columnLabels
                         rowLabel={gridData[rowKey].label}
                         rowData={gridData[rowKey]}
                         renderLabelCell={renderLabelCell}
+                        controllerRef={controllerRef}
                         />
                 ))}
             </div>

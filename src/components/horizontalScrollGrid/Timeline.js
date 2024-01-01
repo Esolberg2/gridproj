@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import Cell from '../cell/Cell';
 import TimelineCell from '../cell/TimelineCell';
 import HorizontalScrollGrid from './HorizontalScrollGrid';
 import moment from 'moment';
-import { useState } from 'react'
+import _ from 'lodash';
+
 
 
 const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInterval}) => {
     
     const [gridStateData, setGridStateData] = useState(timelineData);
+    const ref = useRef();
 
     // set defaults
     cellWidth = cellWidth ? cellWidth : 100;
@@ -101,6 +103,30 @@ const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInt
         })
     }
 
+    // const updateObject = function (original, updates) {
+    //     return _.merge(original, updates)
+    // }
+
+    const updateState = useCallback((targetObject, changes) => {
+        setGridStateData((prevState) => {
+          const newState = _.cloneDeep(targetObject || prevState); // Use targetObject if provided, else use prevState
+    
+          // Apply changes
+          _.map(changes, ({ path, value }) => {
+            _.set(newState, path, value);
+          });
+    
+          return newState;
+        });
+      }, []);
+
+    const rescheduleCase = function (caseObj, newTime) {
+        const changes = {
+            path: "", value: ""
+        }
+        updateState(caseObj, changes)
+    }
+
     return (
         <>
         <HorizontalScrollGrid
@@ -112,6 +138,7 @@ const Timeline = ({ rows, cellWidth, timelineData, startTime, endTime, minuteInt
             renderColHeaderCell={renderColHeaderCell}
             gridData={gridStateData}
             renderLabelCell={renderLabelCell}
+            controllerRef={ref}
             />
         <button style={{width: 50}} onClick={()=>{updateRow()}}>
             test

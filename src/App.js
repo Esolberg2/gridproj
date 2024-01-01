@@ -3,6 +3,7 @@ import Slider from '@mui/material/Slider';
 import { useState } from 'react'
 import moment from 'moment';
 import Timeline from './components/horizontalScrollGrid/Timeline';
+import ORSB from './components/ORSB/ORSB';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     setSliderValue(newValue);
   };
 
+  // could be two separate feeds: rooms and cases
   const dummyData = {
     OR1: {
       label: "OR 1",
@@ -21,6 +23,7 @@ function App() {
       label: "OR 2",
       events: [
         {
+          room: "OR2",
           name: "Kate Lyndon",
           specialty: "Spinal",
           startTime: "09:00",
@@ -37,6 +40,7 @@ function App() {
       label: "OR 4",
       events: [
         {
+          room: "OR4",
           name: "Brian Kowalski",
           specialty: "Otolaryngology",
           startTime: "01:00",
@@ -44,6 +48,7 @@ function App() {
           id: 2
         },
         {
+          room: "OR4",
           name: "Conrad Jennings",
           specialty: "Cardiology",
           startTime: "04:00",
@@ -51,6 +56,7 @@ function App() {
           id: 3,
         },
         {
+          room: "OR4",
           name: "Gale Gillroy",
           specialty: "Spinal",
           startTime: "06:00",
@@ -66,7 +72,7 @@ function App() {
       <div style={{height: "100px"}}>
         HEADER
       </div>
-      <Timeline
+      {/* <Timeline
         rows={10}
         columns={14}
         cellWidth={sliderValue}
@@ -74,7 +80,8 @@ function App() {
         startTime={"01:00"}
         endTime={"11:53"}
         minuteInterval={30}
-        />
+        /> */}
+      <ORSB timelineData={dummyData} cellWidth={sliderValue} startTime={"01:00"} endTime={"11:53"} minuteInterval={30} currentTimeOffsetMinutes={67}/>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         {"Zoom"}
         <Slider

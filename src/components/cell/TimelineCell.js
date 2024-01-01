@@ -91,7 +91,7 @@ For live reordering of case tiles:
 */
 const TimelineCell = ({ colIndex, data, pixelsPerMinute, style }) => {
   return (
-    <Cell colIndex={colIndex} style={style} >
+    <Cell colIndex={colIndex} style={{position: 'relative', ...style}} >
       {
         data.map(caseObj => {
           const startTime = moment.utc(caseObj.startTime, "HH:mm", true);
@@ -102,10 +102,9 @@ const TimelineCell = ({ colIndex, data, pixelsPerMinute, style }) => {
           console.log(duration)
           console.log(duration * pixelsPerMinute)
           console.log("")
-          return <CaseTile style={{width: width}} key={caseObj.id} name={caseObj.name} specialty={caseObj.specialty} />
+          return <CaseTile style={{position: 'absolute', width: width}} key={caseObj.id} caseData={caseObj} />
         })
       }
-      
     </Cell>
   );
 };
