@@ -1,4 +1,4 @@
-import Cell from '../cell/Cell';
+import Cell from './Cell';
 import moment from 'moment';
 import React, { useMemo } from 'react';
 import CaseTile from './CaseTile';

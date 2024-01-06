@@ -1,4 +1,4 @@
-import Cell from '../cell/Cell';
+import Cell from './Cell';
 
 const ColumnHeaderCell = ({ cellWidth, children }) => {
 
