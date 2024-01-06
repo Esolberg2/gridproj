@@ -49,8 +49,6 @@ const ORSB = ({ timelineData, startTime, endTime, minuteInterval, labelWidth, ce
         return columnData;
       }
 
-
-
     const updateRow = function () {
         setGridStateData(current => {
             return {
