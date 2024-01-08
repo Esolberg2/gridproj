@@ -76,16 +76,14 @@ function App() {
       <div style={{height: "100px"}}>
         HEADER
       </div>
-      {/* <Timeline
-        rows={10}
-        columns={14}
-        cellWidth={sliderValue}
+      <ORSB
         timelineData={dummyData}
+        cellWidth={sliderValue}
         startTime={"01:00"}
         endTime={"11:53"}
         minuteInterval={30}
-        /> */}
-      <ORSB timelineData={dummyData} cellWidth={sliderValue} startTime={"01:00"} endTime={"11:53"} minuteInterval={30} currentTimeOffsetMinutes={67}/>
+        currentTimeOffsetMinutes={75}
+        />
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         {"Zoom"}
         <Slider
