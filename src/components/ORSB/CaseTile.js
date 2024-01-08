@@ -1,33 +1,32 @@
 import moment from 'moment';
-import React, { useMemo } from 'react';
+import React from 'react';
 
-const CaseTile = ({ caseObj, pixelsPerMinute }) => {
-    const caseDuration = useMemo(() => {
-        const [startHour, startMinute] = caseObj.startTime.split(':');
-        const [endHour, endMinute] = caseObj.endTime.split(':');
-        const caseStartMoment = moment().set({ hour: startHour, minute: startMinute, second: 0, millisecond: 0 });
-        const caseEndMoment = moment().set({ hour: endHour, minute: endMinute, second: 0, millisecond: 0 });
-        const caseDuration = caseEndMoment.diff(caseStartMoment, 'minutes');
-        return caseDuration
-      }, [caseObj]);
-    
+const CaseTile = ({ caseObj, pixelsPerMinute, cellStartMoment}) => {
+
+    const caseDuration = caseObj.duration;
     const caseWidth = caseDuration * pixelsPerMinute;
 
-    const handleOnDrag = function (e) {
-        e.dataTransfer.setData("originalData", JSON.stringify(caseObj))
+    const handleOnDragEnd = function (e) {
+        e.dataTransfer.setData("clickEnd", e.pageX);
+    }
+
+    const handleOnDragStart = function (e) {
+        e.dataTransfer.setData("clickStart", e.pageX);
+        e.dataTransfer.setData("originalData", JSON.stringify(caseObj));
     }
     
     return (
         <div 
-            onDragStart={handleOnDrag}
+            onDragStart={handleOnDragStart}
+            onDragEnd={handleOnDragEnd}
             className="CaseTile"
-            onClick={()=>console.log("click")}
             draggable={true}
             style={{
-            backgroundColor: 'orange',
-            pointerEvents: 'auto',
-            position: 'absolute',
-            width: caseWidth
+                backgroundColor: caseObj.color || 'orange',
+                pointerEvents: 'auto',
+                position: 'absolute',
+                width: caseWidth,
+                marginLeft: moment(caseObj.startTime, "hh:mm").diff(moment(cellStartMoment), "minutes") * pixelsPerMinute,
             }}>
             <div>
                 {caseObj.name}

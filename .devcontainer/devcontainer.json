@@ -1,0 +1,11 @@
+{
+    "name": "GRIDPROJ Dev Container",
+    "image": "node:20.10.0",
+    "forwardPorts": [3000],
+    "appPort": 3000,
+    "extensions": [
+    //   "dbaeumer.vscode-eslint"
+      // Add other extensions as needed
+    ]
+  }
+  

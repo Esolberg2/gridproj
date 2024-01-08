@@ -9,7 +9,7 @@ const HeaderRow = ({ columnData, cellWidth }) => {
             {
                 columnData.map((data, colIndex) => {
                     return (
-                        <ColumnHeaderCell key={colIndex} cellWidth={cellWidth}>
+                        <ColumnHeaderCell key={colIndex} cellWidth={cellWidth} >
                             {data.startTime.format("hh:mm")}
                         </ColumnHeaderCell>
                     )

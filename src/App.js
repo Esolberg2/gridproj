@@ -25,7 +25,8 @@ function App() {
           name: "Kate Lyndon",
           specialty: "Spinal",
           startTime: "09:00",
-          endTime: "11:00",
+          // endTime: "11:00",
+          duration: 120,
           id: 1,
         }
       ]
@@ -42,7 +43,8 @@ function App() {
           name: "Brian Kowalski",
           specialty: "Otolaryngology",
           startTime: "01:00",
-          endTime: "02:40",
+          // endTime: "02:40",
+          duration: 90,
           id: 2
         },
         {
@@ -50,15 +52,19 @@ function App() {
           name: "Conrad Jennings",
           specialty: "Cardiology",
           startTime: "04:00",
-          endTime: "05:30",
+          // endTime: "05:30",
+          duration: 90,
           id: 3,
         },
         {
           room: "OR4",
           name: "Gale Gillroy",
           specialty: "Spinal",
-          startTime: "06:00",
-          endTime: "08:30",
+          startTime: "04:20",
+          color: 'green',
+          offset: 15,
+          // endTime: "08:30",
+          duration: 155,
           id: 4,
         }
       ]
